@@ -10,7 +10,7 @@ class PublishedManager(models.Manager):
 
 
 class Post(models.Model):
-	STATUS_CHOICE = {
+	STATUS_CHOICES = {
 		('draft', 'Draft'),
 		('published', 'Published'),
 	}
@@ -21,14 +21,9 @@ class Post(models.Model):
 	publish = models.DateTimeField(default=timezone.now) # сохраняет дату публикации статьи
 	created = models.DateTimeField(auto_now_add=True) # собсна указывает на дату создания статьи (auto_now_add=True - сохраняет автоматически при сохранении объекта)
 	update  = models.DateTimeField(auto_now=True) # дата и время редактирования статьи (auto_now=True - сохраняет автоматически при сохранении объекта)
-	status = models.CharField(max_length=10, choices=STATUS_CHOICE, default='draft') # статус статьи. Choices - для выбора статуса.
+	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft') # статус статьи. Choices - для выбора статуса.
 	objects = models.Manager() # описание менеджера
 	published = PublishedManager() # добавление нового менеджера в модель
-
-
-	def get_absolute_url(self):
-		return reverse('blog: post_detail', args=[self.publish.year, self.publish.month,
-						self.publish.day, self.slug]) # будет использоваться, чтобы получить ссылку на статью.
 
 	class Meta:
 		ordering = ('-publish',) # метаданные для порядка сортировки (по убыванию) (разумеется по убыванию даты публикации)
@@ -37,3 +32,9 @@ class Post(models.Model):
 		return self.title # это чтобы выводил текст, а не цифровую ссылку на объект
 
 
+	def get_absolute_url(self):
+		return reverse('blog:post_detail',
+						args=[self.publish.year,
+								self.publish.month,
+								self.publish.day,
+								self.slug])
