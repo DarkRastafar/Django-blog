@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
-from .forms import EmailPostForm
-from .models import Post
+from .forms import EmailPostForm, CommentForm
+from .models import Post, Comment
 
 # Create your views here.
 def post_list(request):
@@ -30,9 +30,22 @@ def post_detail(request, year, month, day, post):
                                    publish__year=year,
                                    publish__month=month,
                                    publish__day=day)
+
+	
+	comments = post.comments.filter(active=True) #список активных комментариев для статьи через QuerySet
+	new_comment = None
+	if request.method == 'POST':
+		comment_form = CommentForm(data=request.POST) # юзер отправил коммент
+		if comment_form.is_valid():
+			new_comment = comment_form.save(commit=False) #даем создать комент, но не записываем в базу
+			new_comment.post = post # завязываем коммент на статью
+			new_comment.save() # собсна - сохраняем в бд.
+	else:
+		comment_form = CommentForm() #возвращаем форму, если GET запрос
 	return render(request,
                   'blog/post/detail.html',
-                  {'post': post})
+                  {'post' : post, 'comments' : comments,
+                   'new_comment' : new_comment, 'comment_form' : comment_form})
 	'''обработчик страницы статьи. принимает на вход арг для получения статьи по слагу и дате.
 	render - возвращает HTML - шаблон'''
 

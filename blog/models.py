@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 # Create your models here.
 class PublishedManager(models.Manager):
@@ -24,6 +25,10 @@ class Post(models.Model):
 	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft') # статус статьи. Choices - для выбора статуса.
 	objects = models.Manager() # описание менеджера
 	published = PublishedManager() # добавление нового менеджера в модель
+	tags = TaggableManager() # <---'''чтобы подружить эту херь с django 3+ - пришлось создавать 
+	#в django.utils - "six.py" (исходники отрыл в аналах документации по древнему djando)
+	#а так же патчить django.utils.encoding.py ибо данная библиотека наотрез отказалась 
+	#работать без python_2_unicode_compatible, писать импорт "six" в managers.py в корне taggit'''
 
 	class Meta:
 		ordering = ('-publish',) # метаданные для порядка сортировки (по убыванию) (разумеется по убыванию даты публикации)
