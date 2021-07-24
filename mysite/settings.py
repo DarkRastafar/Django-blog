@@ -132,3 +132,6 @@ EMAIL_HOST_USER = 'alwaysintouch247@gmail.com'
 EMAIL_HOST_PASSWORD = '42o2o9143988z'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
