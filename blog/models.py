@@ -23,6 +23,8 @@ class Post(models.Model):
 	created = models.DateTimeField(auto_now_add=True) # собсна указывает на дату создания статьи (auto_now_add=True - сохраняет автоматически при сохранении объекта)
 	update  = models.DateTimeField(auto_now=True) # дата и время редактирования статьи (auto_now=True - сохраняет автоматически при сохранении объекта)
 	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft') # статус статьи. Choices - для выбора статуса.
+	
+
 	objects = models.Manager() # описание менеджера
 	published = PublishedManager() # добавление нового менеджера в модель
 	tags = TaggableManager() # <---'''чтобы подружить эту херь с django 3+ - пришлось создавать 
