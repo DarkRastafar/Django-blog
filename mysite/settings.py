@@ -11,11 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-<<<<<<< HEAD
 from .config import TOKEN, STATUS_DEBUG, HOST_USER, HOST_PASSWORD
-=======
-import config
->>>>>>> b52c468ed2b2e40a5b7bb7b4718900ac132fa1fe
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
