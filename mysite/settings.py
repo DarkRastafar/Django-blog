@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9=k^=6)w1p_)nn4&ycnyedq)#h(3n*i9lvy8&34r0%$1ugq((k'
+SECRET_KEY = TOKEN
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = STATUS_DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -128,8 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'alwaysintouch247@gmail.com'
-EMAIL_HOST_PASSWORD = '42o2o9143988z'
+EMAIL_HOST_USER = HOST_USER
+EMAIL_HOST_PASSWORD = HOST_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
