@@ -17,7 +17,12 @@
 	</div>
 	<div id="sidebar">
 		<h2>Мой блог</h2>
-			<p>Мой блог) Количество статей аж {% total_posts %})</p>
+			<p>
+				Мой блог) Количество статей аж {% total_posts %})
+			</p>
+			<p>
+				<a href="{% url 'blog:post_feed' %}">Подписывайся на мою RSS рассылку</a>
+			</p>
 
 		<h3>Прошлые статьи</h3>
 			{% show_latest_posts 5 %}
