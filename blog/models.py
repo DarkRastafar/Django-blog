@@ -27,14 +27,10 @@ class Post(models.Model):
 
 	objects = models.Manager() # описание менеджера
 	published = PublishedManager() # добавление нового менеджера в модель
-	tags = TaggableManager() # <---'''чтобы подружить эту херь с django 3+ - пришлось создавать 
-	#в django.utils - "six.py" (исходники отрыл в аналах документации по древнему djando)
-	#а так же патчить django.utils.encoding.py ибо данная библиотека наотрез отказалась 
-	#работать без python_2_unicode_compatible, писать импорт "six" в managers.py в корне taggit, а так же - 
-	#97 строка C:\Program Files (x86)\Python38-32\Lib\site-packages\django\forms - закоментил renderer'''
+	tags = TaggableManager() 
 
 	class Meta:
-		ordering = ('-publish',) # метаданные для порядка сортировки (по убыванию) (разумеется по убыванию даты публикации)
+		ordering = ('-publish',) # метаданные для порядка сортировки (по убыванию)
 
 	def __str__(self):
 		return self.title # это чтобы выводил текст, а не цифровую ссылку на объект

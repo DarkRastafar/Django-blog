@@ -7,7 +7,7 @@ from .forms import EmailPostForm, CommentForm
 from .models import Post, Comment
 from taggit.models import Tag
 
-# Create your views here.
+
 def post_list(request, tag_slug=None):
 	object_list = Post.published.all()
 	tag = None
@@ -16,10 +16,10 @@ def post_list(request, tag_slug=None):
 		tag = get_object_or_404(Tag, slug=tag_slug)
 		object_list = object_list.filter(tags__in=[tag])
 
-	paginator = Paginator(object_list, 3) #Добавлю ка по 10 статей на страницу, вродь норм
+	paginator = Paginator(object_list, 3)
 	page = request.GET.get('page') #текущая страница
 	try:
-		posts = paginator.page(page) # список объектов на странице "метод page(), класса Paginator"
+		posts = paginator.page(page) # список объектов на странице
 	except PageNotAnInteger:
 		posts = paginator.page(1)
 	except EmptyPage:

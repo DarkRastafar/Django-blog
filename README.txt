@@ -5,3 +5,15 @@ tags = TaggableManager() # <---Чтобы подружить эту херь с 
 	#97 строка C:\Program Files (x86)\Python38-32\Lib\site-packages\django\forms - закоментил renderer, ибо -
 	renderer=None - нагло игнорилось, т.к. там renderer принимает значение из экземпляра 
 	(class BoundField, def as_widget).
+
+
+vievs.py	
+post_list - рендерит статьи блога + пагинатор + теги.
+post_detail - рендерит комменты + форму комментов + рекомендацию похожих статей по тегам.
+post_share - собсна функция для того, чтобы отправлять на мыло ссылку на статью и меседж. рендерит форму отправки.
+
+models.py
+PublishedManager - Апдейтнутый QuerySet обработчик (фильтр по публикации).
+Post - Таблица постов.
+get_absolute_url - создание URL из данных статьи.
+Comment - Таблица комментов.
