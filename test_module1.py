@@ -6,6 +6,7 @@ class SoloFunctionsTestCase(TestCase):
         print('Assert complete!')
         self.assertEqual(1, 1)
 
-    def test_russian_words(self):
+    def test_russian_chr(self):
         print('Тест')
         self.assertEqual('Тест', 'Тест')
+
