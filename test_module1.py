@@ -9,3 +9,4 @@ class SoloFunctionsTestCase(TestCase):
     def test_russian_chr(self):
         print('Тест')
         self.assertEqual('Тест', 'Тест')
+
