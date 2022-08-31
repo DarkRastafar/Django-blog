@@ -9,6 +9,8 @@ on:
 jobs:
   build_windows:
     runs-on: windows-latest
+    env:
+      PYTHONIOENCODING: UTF-8
     steps:
       - uses: actions/checkout@v2
       - name: Install Python
@@ -18,8 +20,6 @@ jobs:
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
-          export PYTHONIOENCODING
-          PYTHONIOENCODING = UTF-8
 #          pip install -r req.txt
       - name: Run FirstStep test
         run: python -m unittest test_module1
