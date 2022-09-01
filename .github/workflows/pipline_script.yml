@@ -50,5 +50,5 @@ jobs:
 
       - name: Run FirstStep test
         run: |
-        venv/bin/activate
+        ./venv/bin/activate
         python -m unittest test_module1
