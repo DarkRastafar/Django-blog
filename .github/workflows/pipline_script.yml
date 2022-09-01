@@ -54,6 +54,6 @@ jobs:
 
       - name: Run FirstStep test
         run: |
-        ${{ matrix.venv-path }}
+        venv\Scripts\activate.bat
         python -m unittest test_module1
 
