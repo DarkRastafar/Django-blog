@@ -11,3 +11,6 @@ class SoloFunctionsTestCase(TestCase):
         print('Тест')
         self.assertEqual('Тест', 'Тест')
 
+    def test_requests(self):
+        print(requests.Request)
+
