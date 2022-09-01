@@ -49,4 +49,6 @@ jobs:
         if: steps.cache-venv.outputs.cache-hit != 'true'
 
       - name: Run FirstStep test
-        run: python -m unittest test_module1
+        run: |
+        . ./.venv/bin/activate
+        python -m unittest test_module1
