@@ -34,6 +34,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - uses: actions/cache@v3
+        id: cache-venv
         with:
           path: ${{ matrix.path }}
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
@@ -42,8 +43,10 @@ jobs:
 
       - name: Install deps
         run: |
+          python -m venv ./.venv && . ./.venv/bin/activate &&
+                    pip install -r requirements.txt
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+        if: steps.cache-venv.outputs.cache-hit != 'true'
 
       - name: Run FirstStep test
         run: python -m unittest test_module1
