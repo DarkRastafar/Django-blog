@@ -27,7 +27,9 @@ jobs:
             path: ~\AppData\Local\pip\Cache
             venv-path: venv\Scripts\activate.bat
         python-version: [3.9]
+
     runs-on: ${{ matrix.os }}
+
     steps:
       - uses: actions/checkout@v2
 
